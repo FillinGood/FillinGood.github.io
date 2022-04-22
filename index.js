@@ -1,7 +1,9 @@
 // @ts-check
 (async () => {
-  //const pages = ["TrelLike", "FillinGood.github.io", "Storybook"];
-  const pages = [["TrelLike", "/TrelLike"]];
+  const pages = [
+    ["TrelLike", "/TrelLike"],
+    ["FillinGood.github.io", "/"],
+  ];
 
   const ghCache = await fetch(
     "https://api.github.com/search/repositories?q=user:FillinGood"
@@ -98,13 +100,15 @@
       app.appendChild(item);
       await sleep(400);
       item.classList.remove("new-item");
-      height = item.getBoundingClientRect().bottom + 5;
+      height += item.getBoundingClientRect().height;
       app.style.height = height + "px";
     }
     await sleep(400);
     app.classList.add("end");
-    height += 5;
+    height += 5 * repos.length;
     app.style.height = height + "px";
+    await sleep(600);
+    app.style.height = "";
   }
 
   document.onreadystatechange = function () {
