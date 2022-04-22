@@ -1,10 +1,7 @@
 // @ts-check
 (async () => {
-  /**
-   * List of pages to display on main page.
-   * @type {string[]}
-   */
-  const pages = ["TrelLike"];
+  //const pages = ["TrelLike", "FillinGood.github.io", "Storybook"];
+  const pages = [["TrelLike", "/TrelLike"]];
 
   const ghCache = await fetch(
     "https://api.github.com/search/repositories?q=user:FillinGood"
@@ -69,11 +66,11 @@
     app.classList.add("animate");
 
     /** @type {Record<'name'|'app'|'repo'|'description', string>[]} */
-    const repos = pages.map((x) => ({
-      name: x,
-      app: "/" + x,
-      repo: "https://github.com/FillinGood/" + x,
-      description: getDescription(x),
+    const repos = pages.map(([name, app]) => ({
+      name,
+      app,
+      repo: "https://github.com/FillinGood/" + name,
+      description: getDescription(name),
     }));
     console.debug(repos);
 
@@ -101,7 +98,7 @@
       app.appendChild(item);
       await sleep(400);
       item.classList.remove("new-item");
-      height = item.getBoundingClientRect().bottom;
+      height = item.getBoundingClientRect().bottom + 5;
       app.style.height = height + "px";
     }
     await sleep(400);
