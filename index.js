@@ -4,7 +4,7 @@
    * List of pages to display on main page.
    * @type {string[]}
    */
-  const pages = [];
+  const pages = ["TrelLike"];
 
   /**
    * Create a new HTML element
