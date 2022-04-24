@@ -3,6 +3,7 @@
   const pages = [
     ["TrelLike", "/TrelLike"],
     ["FillinGood.github.io", "/"],
+    ["Storybook", "/Storybook"],
   ];
 
   const ghCache = await fetch(
